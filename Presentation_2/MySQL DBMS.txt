@@ -1,0 +1,592 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 439
+Server version: 9.7.1 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| companydb          |
+| employee           |
+| hotelmanagementdb  |
+| information_schema |
+| mysql              |
+| performance_schema |
+| researchmanagement |
+| sports_club        |
+| students           |
+| sys                |
++--------------------+
+11 rows in set (0.016 sec)
+
+mysql> use researchmanagement;
+Database changed
+mysql> show tables;
++------------------------------+
+| Tables_in_researchmanagement |
++------------------------------+
+| department                   |
+| expenditure                  |
+| funding_agency               |
+| investigator                 |
+| milestone                    |
+| patent                       |
+| project                      |
+| publication                  |
+| report                       |
+| research_grant               |
+| researcher                   |
++------------------------------+
+11 rows in set (0.548 sec)
+
+mysql> SELECT * FROM department;
++---------+------------------------+
+| Dept_ID | Dept_Name              |
++---------+------------------------+
+|       2 | Biotechnology          |
+|       1 | Computer Science       |
+|       5 | Data Science           |
+|       4 | Electrical Engineering |
+|       3 | Mechanical Engineering |
++---------+------------------------+
+5 rows in set (0.007 sec)
+
+mysql> SELECT * FROM expenditure;
++----------------+------------+-----------+------------+--------------------------+
+| Expenditure_ID | Project_ID | Amount    | Exp_Date   | Description              |
++----------------+------------+-----------+------------+--------------------------+
+|            701 |        201 | 120000.00 | 2026-04-20 | Research Equipment       |
+|            702 |        201 |  50000.00 | 2026-05-10 | Software License         |
+|            703 |        202 |  80000.00 | 2026-06-10 | Agricultural Sensors     |
+|            704 |        202 |  40000.00 | 2026-07-05 | Software and Materials   |
+|            705 |        203 | 150000.00 | 2026-08-05 | Laboratory Equipment     |
+|            706 |        203 |  75000.00 | 2026-08-25 | Energy Testing Materials |
+|            707 |        204 | 100000.00 | 2026-05-20 | Vehicle Sensors          |
+|            708 |        204 |  60000.00 | 2026-06-15 | Testing Equipment        |
+|            709 |        205 | 200000.00 | 2026-08-10 | Computing Resources      |
+|            710 |        205 | 100000.00 | 2026-09-01 | Dataset and Software     |
++----------------+------------+-----------+------------+--------------------------+
+10 rows in set (0.014 sec)
+
+mysql> SELECT * FROM funding_agency;
++-----------+--------------------------------------+-------------------------+
+| Agency_ID | Agency_Name                          | Contact_Details         |
++-----------+--------------------------------------+-------------------------+
+|       301 | Department of Science and Technology | dst@gov.in              |
+|       302 | Indian Council of Medical Research   | icmr@gov.in             |
+|       303 | University Research Fund             | research@university.edu |
+|       304 | Ministry of Education                | education@gov.in        |
+|       305 | National Research Foundation         | nrf@gov.in              |
++-----------+--------------------------------------+-------------------------+
+5 rows in set (0.008 sec)
+
+mysql> SELECT * FROM investigator;
++-----------------+---------------+------------+-------------------+------------+------------+
+| Investigator_ID | Researcher_ID | Project_ID | Role              | From_Date  | To_Date    |
++-----------------+---------------+------------+-------------------+------------+------------+
+|             401 |           101 |        201 | Lead Investigator | 2026-01-10 | NULL       |
+|             402 |           102 |        201 | Co-Investigator   | 2026-01-15 | NULL       |
+|             403 |           103 |        202 | Lead Investigator | 2026-02-15 | NULL       |
+|             404 |           104 |        203 | Lead Investigator | 2026-03-01 | 2026-11-30 |
+|             405 |           105 |        205 | Lead Investigator | 2026-04-01 | NULL       |
++-----------------+---------------+------------+-------------------+------------+------------+
+5 rows in set (0.032 sec)
+
+mysql> SELECT * FROM milestone;
++--------------+------------+-----------------------+------------+-------------+
+| Milestone_ID | Project_ID | Milestone_Name        | Due_Date   | Status      |
++--------------+------------+-----------------------+------------+-------------+
+|          601 |        201 | Dataset Collection    | 2026-04-15 | Completed   |
+|          602 |        202 | Prototype Development | 2026-07-15 | In Progress |
+|          603 |        203 | System Testing        | 2026-10-15 | Pending     |
+|          604 |        204 | Vehicle Model Testing | 2026-08-20 | Completed   |
+|          605 |        205 | NLP Model Training    | 2026-12-15 | In Progress |
++--------------+------------+-----------------------+------------+-------------+
+5 rows in set (0.007 sec)
+
+mysql> SELECT * FROM patent;
++-----------+------------+---------------+------------+
+| Patent_ID | Project_ID | Patent_Number | Filed_Date |
++-----------+------------+---------------+------------+
+|       901 |        201 | PAT-AI-001    | 2026-06-01 |
+|       902 |        202 | PAT-AGR-002   | 2026-08-10 |
+|       903 |        203 | PAT-ENE-003   | 2026-09-05 |
+|       904 |        204 | PAT-AUTO-004  | 2026-07-12 |
+|       905 |        205 | PAT-NLP-005   | 2026-09-12 |
++-----------+------------+---------------+------------+
+5 rows in set (0.008 sec)
+
+mysql> SELECT * FROM project;
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+| Project_ID | Title                                     | Start_Date | End_Date   | Budget    | Status    |
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+|        201 | AI Based Healthcare Analysis              | 2026-01-10 | 2026-12-20 | 500000.00 | Active    |
+|        202 | Smart Agriculture System                  | 2026-02-15 | 2026-10-30 | 300000.00 | Active    |
+|        203 | Sustainable Energy Optimization           | 2026-03-01 | 2026-11-30 | 750000.00 | Completed |
+|        204 | Autonomous Vehicle Monitoring             | 2026-01-20 | 2026-09-30 | 450000.00 | Completed |
+|        205 | Natural Language Processing for Education | 2026-04-01 | 2027-03-31 | 900000.00 | Active    |
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+5 rows in set (0.011 sec)
+
+mysql> SELECT * FROM publication;
++----------------+------------+------------------------------------------+------------+----------------------+
+| Publication_ID | Project_ID | Title                                    | Pub_Date   | DOI                  |
++----------------+------------+------------------------------------------+------------+----------------------+
+|            801 |        201 | AI-Based Analysis of Medical Images      | 2026-05-10 | 10.1000/aihealth001  |
+|            802 |        202 | Machine Learning for Smart Agriculture   | 2026-07-20 | 10.1000/smartagri002 |
+|            803 |        203 | AI Optimization for Sustainable Energy   | 2026-09-01 | 10.1000/energy003    |
+|            804 |        204 | Autonomous Vehicle Monitoring Using AI   | 2026-08-15 | 10.1000/autoveh004   |
+|            805 |        205 | Natural Language Processing in Education | 2026-09-10 | 10.1000/nlpedu005    |
++----------------+------------+------------------------------------------+------------+----------------------+
+5 rows in set (0.008 sec)
+
+mysql> SELECT * FROM report;
++-----------+------------+----------------------------+-------------+
+| Report_ID | Project_ID | Report_Type                | Report_Date |
++-----------+------------+----------------------------+-------------+
+|      1001 |        201 | Project Progress Report    | 2026-06-30  |
+|      1002 |        202 | Funding Utilization Report | 2026-07-31  |
+|      1003 |        203 | Final Research Report      | 2026-09-10  |
+|      1004 |        204 | Project Completion Report  | 2026-09-15  |
+|      1005 |        205 | Research Progress Report   | 2026-09-20  |
++-----------+------------+----------------------------+-------------+
+5 rows in set (0.007 sec)
+
+mysql> SELECT * FROM research_grant;
++----------+------------+-----------+--------------+------------+-----------------------------+
+| Grant_ID | Project_ID | Agency_ID | Grant_Amount | Grant_Date | Purpose                     |
++----------+------------+-----------+--------------+------------+-----------------------------+
+|      501 |        201 |       302 |    400000.00 | 2026-01-15 | Healthcare AI Research      |
+|      502 |        202 |       301 |    250000.00 | 2026-02-20 | Smart Agriculture Research  |
+|      503 |        203 |       303 |    600000.00 | 2026-03-05 | Sustainable Energy Research |
+|      504 |        204 |       304 |    350000.00 | 2026-02-01 | Autonomous Vehicle Research |
+|      505 |        205 |       305 |    700000.00 | 2026-04-10 | Educational AI Research     |
++----------+------------+-----------+--------------+------------+-----------------------------+
+5 rows in set (0.008 sec)
+
+mysql> SELECT * FROM researcher;
++---------------+---------+--------------+-----------------------+------------+
+| Researcher_ID | Dept_ID | Name         | Email                 | Phone      |
++---------------+---------+--------------+-----------------------+------------+
+|           101 |       1 | Aarav Sharma | aarav@university.edu  | 9876543210 |
+|           102 |       1 | Priya Rao    | priya@university.edu  | 9876543211 |
+|           103 |       2 | Rahul Mehta  | rahul@university.edu  | 9876543212 |
+|           104 |       3 | Ananya Iyer  | ananya@university.edu | 9876543213 |
+|           105 |       5 | Vikram Singh | vikram@university.edu | 9876543214 |
++---------------+---------+--------------+-----------------------+------------+
+5 rows in set (0.016 sec)
+
+mysql> use sports_club;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_sports_club |
++-----------------------+
+| coach                 |
+| equipment             |
+| equipment_issue       |
+| facility              |
+| fixture               |
+| member                |
+| member_sport          |
+| membership_plan       |
+| participant           |
+| payment               |
+| result                |
+| sport                 |
+| team                  |
+| tournament            |
+| training_session      |
++-----------------------+
+15 rows in set (0.020 sec)
+
+mysql> SELECT * FROM coach;
++----------+------------+------------+-------------------+------------+
+| Coach_ID | Coach_Name | Phone      | Email             | Experience |
++----------+------------+------------+-------------------+------------+
+|        1 | Ramesh     | 9000000001 | ramesh@gmail.com  |          8 |
+|        2 | Suresh     | 9000000002 | suresh@gmail.com  |          6 |
+|        3 | Mahesh     | 9000000003 | mahesh@gmail.com  |         10 |
+|        4 | Raj        | 9000000004 | raj@gmail.com     |          7 |
+|        5 | Karthik    | 9000000005 | karthik@gmail.com |          5 |
+|        6 | Anil       | 9000000006 | anil@gmail.com    |          9 |
+|        7 | Vijay      | 9000000007 | vijay@gmail.com   |         12 |
+|        8 | Ajay       | 9000000008 | ajay@gmail.com    |          4 |
+|        9 | Ravi       | 9000000009 | ravi@gmail.com    |         11 |
+|       10 | Mohan      | 9000000010 | mohan@gmail.com   |          6 |
++----------+------------+------------+-------------------+------------+
+10 rows in set (0.402 sec)
+
+mysql> use researchmanagement;
+Database changed
+mysql> show tables;
++------------------------------+
+| Tables_in_researchmanagement |
++------------------------------+
+| department                   |
+| expenditure                  |
+| funding_agency               |
+| investigator                 |
+| milestone                    |
+| patent                       |
+| project                      |
+| publication                  |
+| report                       |
+| research_grant               |
+| researcher                   |
++------------------------------+
+11 rows in set (0.022 sec)
+
+mysql> INSERT INTO department (Dept_ID, Dept_Name) VALUES
+    -> (6, 'Artificial Intelligence'),
+    -> (7, 'Biomedical Engineering'),
+    -> (8, 'Environmental Science'),
+    -> (9, 'Information Technology'),
+    -> (10, 'Robotics Engineering');
+Query OK, 5 rows affected (0.431 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO researcher
+    -> (Researcher_ID, Dept_ID, Name, Email, Phone) VALUES
+    -> (106, 6, 'Neha Kapoor', 'neha@university.edu', '9876543215'),
+    -> (107, 7, 'Arjun Reddy', 'arjun@university.edu', '9876543216'),
+    -> (108, 8, 'Sneha Patel', 'sneha@university.edu', '9876543217'),
+    -> (109, 9, 'Karan Malhotra', 'karan@university.edu', '9876543218'),
+    -> (110, 10, 'Meera Nair', 'meera@university.edu', '9876543219');
+ERROR 1062 (23000): Duplicate entry '106' for key 'researcher.PRIMARY'
+mysql> INSERT INTO researcher
+    -> (Researcher_ID, Dept_ID, Name, Email, Phone) VALUES
+    -> (107, 7, 'Arjun Reddy', 'arjun@university.edu', '9876543216'),
+    -> (108, 8, 'Sneha Patel', 'sneha@university.edu', '9876543215'),
+    -> (109, 9, 'Karan Malhotra', 'karan@university.edu', '9876543218'),
+    -> (110, 10, 'Meera Nair', 'meera@university.edu', '9876543219');
+Query OK, 4 rows affected (0.048 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO project
+    -> (Project_ID, Title, Start_Date, End_Date, Budget, Status) VALUES
+    -> (206, 'AI Powered Disease Detection', '2026-05-01', '2027-04-30', 650000.00, 'Active'),
+    -> (207, 'Biomedical Signal Processing', '2026-06-01', '2027-05-31', 550000.00, 'Active'),
+    -> (208, 'Climate Change Prediction Model', '2026-07-01', '2027-06-30', 700000.00, 'Active'),
+    -> (209, 'Cybersecurity Threat Detection', '2026-05-15', '2027-03-31', 600000.00, 'Active'),
+    -> (210, 'Robotic Assistance System', '2026-08-01', '2027-07-31', 800000.00, 'Pending');
+Query OK, 5 rows affected (0.071 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO funding_agency
+    -> (Agency_ID, Agency_Name, Contact_Details) VALUES
+    -> (306, 'Indian Institute of Science Research Fund', 'research@iisc.ac.in'),
+    -> (307, 'Department of Biotechnology', 'dbt@gov.in'),
+    -> (308, 'Indian Space Research Organisation', 'research@isro.gov.in'),
+    -> (309, 'National Informatics Centre', 'research@nic.in'),
+    -> (310, 'Council of Scientific and Industrial Research', 'csir@gov.in');
+Query OK, 5 rows affected (0.404 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO investigator
+    -> (Investigator_ID, Researcher_ID, Project_ID, Role, From_Date, To_Date) VALUES
+    -> (406, 106, 206, 'Lead Investigator', '2026-05-01', NULL),
+    -> (407, 107, 207, 'Lead Investigator', '2026-06-01', NULL),
+    -> (408, 108, 208, 'Co-Investigator', '2026-07-01', NULL),
+    -> (409, 109, 209, 'Lead Investigator', '2026-05-15', NULL),
+    -> (410, 110, 210, 'Lead Investigator', '2026-08-01', NULL);
+Query OK, 5 rows affected (0.057 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO research_grant
+    -> (Grant_ID, Project_ID, Agency_ID, Grant_Amount, Grant_Date, Purpose) VALUES
+    -> (506, 206, 306, 500000.00, '2026-05-10', 'AI Disease Detection Research'),
+    -> (507, 207, 307, 400000.00, '2026-06-15', 'Biomedical Signal Research'),
+    -> (508, 208, 308, 550000.00, '2026-07-10', 'Climate Prediction Research'),
+    -> (509, 209, 309, 450000.00, '2026-05-25', 'Cybersecurity Research'),
+    -> (510, 210, 310, 650000.00, '2026-08-10', 'Robotics Research');
+Query OK, 5 rows affected (0.424 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO milestone
+    -> (Milestone_ID, Project_ID, Milestone_Name, Due_Date, Status) VALUES
+    -> (606, 206, 'Medical Dataset Preparation', '2026-09-15', 'Completed'),
+    -> (607, 207, 'Signal Data Collection', '2026-10-15', 'In Progress'),
+    -> (608, 208, 'Climate Dataset Analysis', '2026-11-20', 'Pending'),
+    -> (609, 209, 'Threat Model Development', '2026-10-30', 'In Progress'),
+    -> (610, 210, 'Robot Prototype Design', '2026-12-15', 'Pending');
+Query OK, 5 rows affected (0.121 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO expenditure
+    -> (Expenditure_ID, Project_ID, Amount, Exp_Date, Description) VALUES
+    -> (711, 206, 90000.00, '2026-06-10', 'Medical Dataset and Equipment'),
+    -> (712, 207, 85000.00, '2026-07-20', 'Biomedical Sensors'),
+    -> (713, 208, 110000.00, '2026-08-15', 'Climate Computing Resources'),
+    -> (714, 209, 95000.00, '2026-06-25', 'Cybersecurity Software'),
+    -> (715, 210, 120000.00, '2026-09-10', 'Robotic Components');
+Query OK, 5 rows affected (0.165 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO publication
+    -> (Publication_ID, Project_ID, Title, Pub_Date, DOI) VALUES
+    -> (806, 206, 'AI Based Disease Detection Using Deep Learning', '2026-09-20', '10.1000/disease006'),
+    -> (807, 207, 'Biomedical Signal Processing Using Machine Learning', '2026-10-05', '10.1000/biomed007'),
+    -> (808, 208, 'Machine Learning for Climate Prediction', '2026-10-15', '10.1000/climate008'),
+    -> (809, 209, 'AI Based Cybersecurity Threat Detection', '2026-09-30', '10.1000/cyber009'),
+    -> (810, 210, 'Intelligent Robotic Assistance Systems', '2026-11-10', '10.1000/robot010');
+Query OK, 5 rows affected (0.067 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO patent
+    -> (Patent_ID, Project_ID, Patent_Number, Filed_Date) VALUES
+    -> (906, 206, 'PAT-DIS-006', '2026-10-01'),
+    -> (907, 207, 'PAT-BIO-007', '2026-10-10'),
+    -> (908, 208, 'PAT-CLI-008', '2026-11-01'),
+    -> (909, 209, 'PAT-CYB-009', '2026-10-05'),
+    -> (910, 210, 'PAT-ROB-010', '2026-11-15');
+Query OK, 5 rows affected (0.368 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO report
+    -> (Report_ID, Project_ID, Report_Type, Report_Date) VALUES
+    -> (1006, 206, 'Medical AI Progress Report', '2026-10-01'),
+    -> (1007, 207, 'Biomedical Research Report', '2026-10-15'),
+    -> (1008, 208, 'Climate Research Progress Report', '2026-11-01'),
+    -> (1009, 209, 'Cybersecurity Project Report', '2026-10-20'),
+    -> (1010, 210, 'Robotics Development Report', '2026-11-20');
+Query OK, 5 rows affected (0.048 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM department;
++---------+-------------------------+
+| Dept_ID | Dept_Name               |
++---------+-------------------------+
+|       6 | Artificial Intelligence |
+|       7 | Biomedical Engineering  |
+|       2 | Biotechnology           |
+|       1 | Computer Science        |
+|       5 | Data Science            |
+|       4 | Electrical Engineering  |
+|       8 | Environmental Science   |
+|       9 | Information Technology  |
+|       3 | Mechanical Engineering  |
+|      10 | Robotics Engineering    |
++---------+-------------------------+
+10 rows in set (0.006 sec)
+
+mysql> SELECT * FROM researcher;
++---------------+---------+----------------+-----------------------+------------+
+| Researcher_ID | Dept_ID | Name           | Email                 | Phone      |
++---------------+---------+----------------+-----------------------+------------+
+|           101 |       1 | Aarav Sharma   | aarav@university.edu  | 9876543210 |
+|           102 |       1 | Priya Rao      | priya@university.edu  | 9876543211 |
+|           103 |       2 | Rahul Mehta    | rahul@university.edu  | 9876543212 |
+|           104 |       3 | Ananya Iyer    | ananya@university.edu | 9876543213 |
+|           105 |       5 | Vikram Singh   | vikram@university.edu | 9876543214 |
+|           106 |       1 | Madhu          | madhu@university.edu  | 9876543217 |
+|           107 |       7 | Arjun Reddy    | arjun@university.edu  | 9876543216 |
+|           108 |       8 | Sneha Patel    | sneha@university.edu  | 9876543215 |
+|           109 |       9 | Karan Malhotra | karan@university.edu  | 9876543218 |
+|           110 |      10 | Meera Nair     | meera@university.edu  | 9876543219 |
++---------------+---------+----------------+-----------------------+------------+
+10 rows in set (0.004 sec)
+
+mysql> SELECT * FROM project;
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+| Project_ID | Title                                     | Start_Date | End_Date   | Budget    | Status    |
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+|        201 | AI Based Healthcare Analysis              | 2026-01-10 | 2026-12-20 | 500000.00 | Active    |
+|        202 | Smart Agriculture System                  | 2026-02-15 | 2026-10-30 | 300000.00 | Active    |
+|        203 | Sustainable Energy Optimization           | 2026-03-01 | 2026-11-30 | 750000.00 | Completed |
+|        204 | Autonomous Vehicle Monitoring             | 2026-01-20 | 2026-09-30 | 450000.00 | Completed |
+|        205 | Natural Language Processing for Education | 2026-04-01 | 2027-03-31 | 900000.00 | Active    |
+|        206 | AI Powered Disease Detection              | 2026-05-01 | 2027-04-30 | 650000.00 | Active    |
+|        207 | Biomedical Signal Processing              | 2026-06-01 | 2027-05-31 | 550000.00 | Active    |
+|        208 | Climate Change Prediction Model           | 2026-07-01 | 2027-06-30 | 700000.00 | Active    |
+|        209 | Cybersecurity Threat Detection            | 2026-05-15 | 2027-03-31 | 600000.00 | Active    |
+|        210 | Robotic Assistance System                 | 2026-08-01 | 2027-07-31 | 800000.00 | Pending   |
++------------+-------------------------------------------+------------+------------+-----------+-----------+
+10 rows in set (0.007 sec)
+
+mysql> SELECT * FROM funding_agency;
++-----------+-----------------------------------------------+-------------------------+
+| Agency_ID | Agency_Name                                   | Contact_Details         |
++-----------+-----------------------------------------------+-------------------------+
+|       301 | Department of Science and Technology          | dst@gov.in              |
+|       302 | Indian Council of Medical Research            | icmr@gov.in             |
+|       303 | University Research Fund                      | research@university.edu |
+|       304 | Ministry of Education                         | education@gov.in        |
+|       305 | National Research Foundation                  | nrf@gov.in              |
+|       306 | Indian Institute of Science Research Fund     | research@iisc.ac.in     |
+|       307 | Department of Biotechnology                   | dbt@gov.in              |
+|       308 | Indian Space Research Organisation            | research@isro.gov.in    |
+|       309 | National Informatics Centre                   | research@nic.in         |
+|       310 | Council of Scientific and Industrial Research | csir@gov.in             |
++-----------+-----------------------------------------------+-------------------------+
+10 rows in set (0.005 sec)
+
+mysql> SELECT * FROM investigator;
++-----------------+---------------+------------+-------------------+------------+------------+
+| Investigator_ID | Researcher_ID | Project_ID | Role              | From_Date  | To_Date    |
++-----------------+---------------+------------+-------------------+------------+------------+
+|             401 |           101 |        201 | Lead Investigator | 2026-01-10 | NULL       |
+|             402 |           102 |        201 | Co-Investigator   | 2026-01-15 | NULL       |
+|             403 |           103 |        202 | Lead Investigator | 2026-02-15 | NULL       |
+|             404 |           104 |        203 | Lead Investigator | 2026-03-01 | 2026-11-30 |
+|             405 |           105 |        205 | Lead Investigator | 2026-04-01 | NULL       |
+|             406 |           106 |        206 | Lead Investigator | 2026-05-01 | NULL       |
+|             407 |           107 |        207 | Lead Investigator | 2026-06-01 | NULL       |
+|             408 |           108 |        208 | Co-Investigator   | 2026-07-01 | NULL       |
+|             409 |           109 |        209 | Lead Investigator | 2026-05-15 | NULL       |
+|             410 |           110 |        210 | Lead Investigator | 2026-08-01 | NULL       |
++-----------------+---------------+------------+-------------------+------------+------------+
+10 rows in set (0.010 sec)
+
+mysql> SELECT * FROM research_grant;
++----------+------------+-----------+--------------+------------+-------------------------------+
+| Grant_ID | Project_ID | Agency_ID | Grant_Amount | Grant_Date | Purpose                       |
++----------+------------+-----------+--------------+------------+-------------------------------+
+|      501 |        201 |       302 |    400000.00 | 2026-01-15 | Healthcare AI Research        |
+|      502 |        202 |       301 |    250000.00 | 2026-02-20 | Smart Agriculture Research    |
+|      503 |        203 |       303 |    600000.00 | 2026-03-05 | Sustainable Energy Research   |
+|      504 |        204 |       304 |    350000.00 | 2026-02-01 | Autonomous Vehicle Research   |
+|      505 |        205 |       305 |    700000.00 | 2026-04-10 | Educational AI Research       |
+|      506 |        206 |       306 |    500000.00 | 2026-05-10 | AI Disease Detection Research |
+|      507 |        207 |       307 |    400000.00 | 2026-06-15 | Biomedical Signal Research    |
+|      508 |        208 |       308 |    550000.00 | 2026-07-10 | Climate Prediction Research   |
+|      509 |        209 |       309 |    450000.00 | 2026-05-25 | Cybersecurity Research        |
+|      510 |        210 |       310 |    650000.00 | 2026-08-10 | Robotics Research             |
++----------+------------+-----------+--------------+------------+-------------------------------+
+10 rows in set (0.006 sec)
+
+mysql> SELECT * FROM milestone;
++--------------+------------+-----------------------------+------------+-------------+
+| Milestone_ID | Project_ID | Milestone_Name              | Due_Date   | Status      |
++--------------+------------+-----------------------------+------------+-------------+
+|          601 |        201 | Dataset Collection          | 2026-04-15 | Completed   |
+|          602 |        202 | Prototype Development       | 2026-07-15 | In Progress |
+|          603 |        203 | System Testing              | 2026-10-15 | Pending     |
+|          604 |        204 | Vehicle Model Testing       | 2026-08-20 | Completed   |
+|          605 |        205 | NLP Model Training          | 2026-12-15 | In Progress |
+|          606 |        206 | Medical Dataset Preparation | 2026-09-15 | Completed   |
+|          607 |        207 | Signal Data Collection      | 2026-10-15 | In Progress |
+|          608 |        208 | Climate Dataset Analysis    | 2026-11-20 | Pending     |
+|          609 |        209 | Threat Model Development    | 2026-10-30 | In Progress |
+|          610 |        210 | Robot Prototype Design      | 2026-12-15 | Pending     |
++--------------+------------+-----------------------------+------------+-------------+
+10 rows in set (0.008 sec)
+
+mysql> SELECT * FROM expenditure;
++----------------+------------+-----------+------------+-------------------------------+
+| Expenditure_ID | Project_ID | Amount    | Exp_Date   | Description                   |
++----------------+------------+-----------+------------+-------------------------------+
+|            701 |        201 | 120000.00 | 2026-04-20 | Research Equipment            |
+|            702 |        201 |  50000.00 | 2026-05-10 | Software License              |
+|            703 |        202 |  80000.00 | 2026-06-10 | Agricultural Sensors          |
+|            704 |        202 |  40000.00 | 2026-07-05 | Software and Materials        |
+|            705 |        203 | 150000.00 | 2026-08-05 | Laboratory Equipment          |
+|            706 |        203 |  75000.00 | 2026-08-25 | Energy Testing Materials      |
+|            707 |        204 | 100000.00 | 2026-05-20 | Vehicle Sensors               |
+|            708 |        204 |  60000.00 | 2026-06-15 | Testing Equipment             |
+|            709 |        205 | 200000.00 | 2026-08-10 | Computing Resources           |
+|            710 |        205 | 100000.00 | 2026-09-01 | Dataset and Software          |
+|            711 |        206 |  90000.00 | 2026-06-10 | Medical Dataset and Equipment |
+|            712 |        207 |  85000.00 | 2026-07-20 | Biomedical Sensors            |
+|            713 |        208 | 110000.00 | 2026-08-15 | Climate Computing Resources   |
+|            714 |        209 |  95000.00 | 2026-06-25 | Cybersecurity Software        |
+|            715 |        210 | 120000.00 | 2026-09-10 | Robotic Components            |
++----------------+------------+-----------+------------+-------------------------------+
+15 rows in set (0.005 sec)
+
+mysql> SELECT * FROM publication;
++----------------+------------+-----------------------------------------------------+------------+----------------------+
+| Publication_ID | Project_ID | Title                                               | Pub_Date   | DOI                  |
++----------------+------------+-----------------------------------------------------+------------+----------------------+
+|            801 |        201 | AI-Based Analysis of Medical Images                 | 2026-05-10 | 10.1000/aihealth001  |
+|            802 |        202 | Machine Learning for Smart Agriculture              | 2026-07-20 | 10.1000/smartagri002 |
+|            803 |        203 | AI Optimization for Sustainable Energy              | 2026-09-01 | 10.1000/energy003    |
+|            804 |        204 | Autonomous Vehicle Monitoring Using AI              | 2026-08-15 | 10.1000/autoveh004   |
+|            805 |        205 | Natural Language Processing in Education            | 2026-09-10 | 10.1000/nlpedu005    |
+|            806 |        206 | AI Based Disease Detection Using Deep Learning      | 2026-09-20 | 10.1000/disease006   |
+|            807 |        207 | Biomedical Signal Processing Using Machine Learning | 2026-10-05 | 10.1000/biomed007    |
+|            808 |        208 | Machine Learning for Climate Prediction             | 2026-10-15 | 10.1000/climate008   |
+|            809 |        209 | AI Based Cybersecurity Threat Detection             | 2026-09-30 | 10.1000/cyber009     |
+|            810 |        210 | Intelligent Robotic Assistance Systems              | 2026-11-10 | 10.1000/robot010     |
++----------------+------------+-----------------------------------------------------+------------+----------------------+
+10 rows in set (0.005 sec)
+
+mysql> SELECT * FROM patent;
++-----------+------------+---------------+------------+
+| Patent_ID | Project_ID | Patent_Number | Filed_Date |
++-----------+------------+---------------+------------+
+|       901 |        201 | PAT-AI-001    | 2026-06-01 |
+|       902 |        202 | PAT-AGR-002   | 2026-08-10 |
+|       903 |        203 | PAT-ENE-003   | 2026-09-05 |
+|       904 |        204 | PAT-AUTO-004  | 2026-07-12 |
+|       905 |        205 | PAT-NLP-005   | 2026-09-12 |
+|       906 |        206 | PAT-DIS-006   | 2026-10-01 |
+|       907 |        207 | PAT-BIO-007   | 2026-10-10 |
+|       908 |        208 | PAT-CLI-008   | 2026-11-01 |
+|       909 |        209 | PAT-CYB-009   | 2026-10-05 |
+|       910 |        210 | PAT-ROB-010   | 2026-11-15 |
++-----------+------------+---------------+------------+
+10 rows in set (0.005 sec)
+
+mysql> SELECT * FROM report;
++-----------+------------+----------------------------------+-------------+
+| Report_ID | Project_ID | Report_Type                      | Report_Date |
++-----------+------------+----------------------------------+-------------+
+|      1001 |        201 | Project Progress Report          | 2026-06-30  |
+|      1002 |        202 | Funding Utilization Report       | 2026-07-31  |
+|      1003 |        203 | Final Research Report            | 2026-09-10  |
+|      1004 |        204 | Project Completion Report        | 2026-09-15  |
+|      1005 |        205 | Research Progress Report         | 2026-09-20  |
+|      1006 |        206 | Medical AI Progress Report       | 2026-10-01  |
+|      1007 |        207 | Biomedical Research Report       | 2026-10-15  |
+|      1008 |        208 | Climate Research Progress Report | 2026-11-01  |
+|      1009 |        209 | Cybersecurity Project Report     | 2026-10-20  |
+|      1010 |        210 | Robotics Development Report      | 2026-11-20  |
++-----------+------------+----------------------------------+-------------+
+10 rows in set (0.005 sec)
+
+mysql> SELECT * FROM departments
+    -> ORDER BY price ASC;
+ERROR 1146 (42S02): Table 'researchmanagement.departments' doesn't exist
+mysql> SELECT * FROM department
+    -> ORDER BY dept_id ASC;
++---------+-------------------------+
+| Dept_ID | Dept_Name               |
++---------+-------------------------+
+|       1 | Computer Science        |
+|       2 | Biotechnology           |
+|       3 | Mechanical Engineering  |
+|       4 | Electrical Engineering  |
+|       5 | Data Science            |
+|       6 | Artificial Intelligence |
+|       7 | Biomedical Engineering  |
+|       8 | Environmental Science   |
+|       9 | Information Technology  |
+|      10 | Robotics Engineering    |
++---------+-------------------------+
+10 rows in set (0.012 sec)
+
+mysql> SELECT R.Name, COUNT(*) OVER () AS Number_of_Researchers
+    -> FROM investigator I
+    -> JOIN researcher R ON I.Researcher_ID = R.Researcher_ID
+    -> JOIN project P ON I.Project_ID = P.Project_ID
+    -> WHERE P.Title = 'AI Based Healthcare Analysis';
++--------------+-----------------------+
+| Name         | Number_of_Researchers |
++--------------+-----------------------+
+| Aarav Sharma |                     2 |
+| Priya Rao    |                     2 |
++--------------+-----------------------+
+2 rows in set (0.327 sec)
+
+mysql>
